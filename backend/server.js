@@ -1,6 +1,6 @@
-import express from "express"
+import express from "express";
 
-import bodyParser from 'body-parser'
+import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
@@ -9,29 +9,29 @@ app.use(bodyParser.json());
 
 // Sample data - you would typically use a database
 let users = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Doe' }
+  { id: 1, name: "John Doe" },
+  { id: 2, name: "Jane Doe" },
 ];
 
 // Get all users
-app.get('/users', (req, res) => {
+app.get("/users", (req, res) => {
   res.json(users);
 });
 
 // Get a specific user by ID
-app.get('/users/:id', (req, res) => {
+app.get("/users/:id", (req, res) => {
   const userId = parseInt(req.params.id);
-  const user = users.find(u => u.id === userId);
+  const user = users.find((u) => u.id === userId);
 
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: "User not found" });
   }
 
   res.json(user);
 });
 
 // Create a new user
-app.post('/users', (req, res) => {
+app.post("/users", (req, res) => {
   const newUser = req.body;
   newUser.id = users.length + 1;
   users.push(newUser);
@@ -39,12 +39,12 @@ app.post('/users', (req, res) => {
 });
 
 // Update a user by ID
-app.put('/users/:id', (req, res) => {
+app.put("/users/:id", (req, res) => {
   const userId = parseInt(req.params.id);
-  const userIndex = users.findIndex(u => u.id === userId);
+  const userIndex = users.findIndex((u) => u.id === userId);
 
   if (userIndex === -1) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: "User not found" });
   }
 
   users[userIndex] = { ...users[userIndex], ...req.body };
@@ -52,12 +52,12 @@ app.put('/users/:id', (req, res) => {
 });
 
 // Delete a user by ID
-app.delete('/users/:id', (req, res) => {
+app.delete("/users/:id", (req, res) => {
   const userId = parseInt(req.params.id);
-  const userIndex = users.findIndex(u => u.id === userId);
+  const userIndex = users.findIndex((u) => u.id === userId);
 
   if (userIndex === -1) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: "User not found" });
   }
 
   const deletedUser = users.splice(userIndex, 1)[0];
