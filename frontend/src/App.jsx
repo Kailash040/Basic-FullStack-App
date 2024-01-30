@@ -5,15 +5,16 @@ function App() {
   const [item, setItem] = useState(0);
   useEffect(() => {
     axios
-      .get("/api/item")
+      .get("/users")
       .then((res) => {
+        console.log(res)
         setItem(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   },[]);
-  console.log(item);
+  console.log(item.name);
   return (
     <>
     <h1>
@@ -21,7 +22,7 @@ function App() {
     json  data
     </h1>
     {
-     item && item.map((data,index)=>{
+     item?.map((data,index)=>{
        return(
         <div key={index}>
         <p>{data.name}</p>
