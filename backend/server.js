@@ -7,7 +7,6 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-// Sample data - you would typically use a database
 let users = [
   { id: 1, name: "John Doe" },
   { id: 2, name: "Jane Doe" },
